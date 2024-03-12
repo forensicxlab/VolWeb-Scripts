@@ -1,8 +1,9 @@
-# VolWebScripts
+<p align="center">
+  <img src="https://github.com/forensicxlab/VolWebScripts/assets/100540050/b388ecaf-18e0-4620-b52a-9bafa9171ece" />
+</p>
 
-LOGO HERE 
 
-This repository contains multiple script to interact with the VolWeb plateform. VolWeb is a memory forensics plateform used to centralize the analysis of your memory images and is available here: https://github.com/k1nd0ne/VolWeb
+This repository contains multiple scripts to interact with the VolWeb plateform. VolWeb is a memory forensics plateform used to centralize the analysis of your memory images and is available here: https://github.com/k1nd0ne/VolWeb
 
 # Contributing
 
