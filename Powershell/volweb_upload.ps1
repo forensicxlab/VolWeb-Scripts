@@ -27,9 +27,9 @@ public static class Dummy {
     }
 }
 "@
+[System.Net.ServicePointManager]::ServerCertificateValidationCallback = [dummy]::GetDelegate()
 }
 
-[System.Net.ServicePointManager]::ServerCertificateValidationCallback = [dummy]::GetDelegate()
 
 
 
