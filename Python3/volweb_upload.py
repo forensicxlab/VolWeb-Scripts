@@ -4,7 +4,6 @@ import os
 from pathlib import Path
 import json
 
-# Parameters
 token = "YOUR_API_TOKEN"
 case_id = "1"
 vol_web_endpoint_url = "http(s)://volweb-instance"
@@ -12,7 +11,8 @@ bucket_endpoint_url = vol_web_endpoint_url + ":9000"
 bucket_endpoint_id = "user"
 bucket_endpoint_key = "password"
 memory_dumps_path = "./path/to/dump/folder"
-self_signed = True  # Adjust if necessary
+self_signed = True 
+OS = "Windows" # Possible values: "Windows" / "Linux"
 
 headers = {"Authorization": f"Token {token}"}
 
@@ -55,7 +55,7 @@ try:
             evidence_body = {
                 "dump_name": filename,
                 "dump_etag": file_etag,
-                "dump_os": "Windows",
+                "dump_os": OS,
                 "dump_linked_case": case_id,
             }
 
