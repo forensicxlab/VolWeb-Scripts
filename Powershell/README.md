@@ -20,4 +20,4 @@
 1. Install the requirement: `Install-Package -Name AWSPowerShell`
 
 
-Example usage using MIN.IO: `.\volweb_upload.ps1 -Token mysupersecrettoken -VolWebEndpointURL "https://my-volweb-instance.ex" -CaseId 1 -BucketEndpointId "user" -BucketEndpointKey "password" -MemoryDumpsPath "C:\Users\Foo\MemoryImages\" -SelfSigned $true`
+Example usage: `.\volweb_upload.ps1 -Token mysupersecrettoken -VolWebEndpointURL "https://my-volweb-instance.ex" -CaseId 1 -BucketEndpointId "user" -BucketEndpointKey "password" -MemoryDumpsPath "C:\Users\Foo\MemoryImages\" -SelfSigned $true`
