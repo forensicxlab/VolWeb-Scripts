@@ -2,23 +2,50 @@ Param (
  [Parameter(Mandatory=$true)][string]$Token,
  [Parameter(Mandatory=$true)][string]$CaseId,
  [Parameter(Mandatory=$true)][string]$VolWebEndpointURL,
- [Parameter(Mandatory=$true)][string]$BucketEndpointURL,
+ [Parameter(Mandatory=$false)][string]$BucketEndpointURL=$VolWebEndpointURL+":9000",
  [Parameter(Mandatory=$true)][string]$BucketEndpointId,
  [Parameter(Mandatory=$true)][string]$BucketEndpointKey,
  [Parameter(Mandatory=$true)][string]$MemoryDumpsPath,
- [Parameter(Mandatory=$false)][bool]$UseSSL=$true
+ [Parameter(Mandatory=$false)][bool]$SelfSigned=$false
 )
+
+if (-not("dummy" -as [type]) -and $SelfSigned) {
+    add-type -TypeDefinition @"
+using System;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+
+public static class Dummy {
+    public static bool ReturnTrue(object sender,
+        X509Certificate certificate,
+        X509Chain chain,
+        SslPolicyErrors sslPolicyErrors) { return true; }
+
+    public static RemoteCertificateValidationCallback GetDelegate() {
+        return new RemoteCertificateValidationCallback(Dummy.ReturnTrue);
+    }
+}
+"@
+}
+
+[System.Net.ServicePointManager]::ServerCertificateValidationCallback = [dummy]::GetDelegate()
+
+
 
 $Headers = @{
     "Authorization" = "Token " + $Token;
 }
 
 $CaseUri = $VolWebEndpointURL + "/api/cases/" + $CaseId + "/"
-
 # Check if the case exist before doing anything
 
-# Check if the case exist before doing anything
-$response = Invoke-WebRequest -Uri $CaseUri -Method GET -Headers $Headers
+try {
+    $response = Invoke-WebRequest -Uri $CaseUri -Headers $Headers -Method Get
+    $content = $response.Content
+} catch {
+    Write-Error "An error occurred: $_"
+}
 
 if($response.StatusCode -eq 200) {
     Write-Host "Case exists."
@@ -76,7 +103,5 @@ if($response.StatusCode -eq 200) {
         
 }
 else {
-    Write-Host "Case does not exist."
-    Write-S3Object -EndpointUrl 
-    
+    Write-Host "Case does not exist."    
 }
