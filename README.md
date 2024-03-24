@@ -3,7 +3,9 @@
 </p>
 
 
-This repository contains multiple scripts to interact with the VolWeb plateform. VolWeb is a memory forensics plateform used to centralize the analysis of your memory images and is available here: https://github.com/k1nd0ne/VolWeb
+This repository contains multiple scripts to interact with the VolWeb platform. VolWeb is a memory forensics plateform used to centralize the analysis of your memory images and is available here: https://github.com/k1nd0ne/VolWeb
+
+You may find the REST API documentation in the wiki of this repository.
 
 # Contributing
 
