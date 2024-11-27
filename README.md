@@ -7,10 +7,12 @@ This repository contains multiple scripts to interact with the VolWeb platform. 
 
 You may find the REST API documentation in the wiki of this repository.
 
+***Following the VolWeb 3.0 Release, this repository will be updated soon***
+
 # Contributing
 
 Feel free to contribute to this repository and add your scripts via a PR !
 
-The repository is organised as follow: 
+The repository is organised as follow:
 - One folder per scripting languages.
 - Each folder as a README describing all of the scripts.
